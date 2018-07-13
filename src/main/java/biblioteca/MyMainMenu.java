@@ -1,0 +1,36 @@
+package biblioteca;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Created by colin on 2018/7/13.
+ */
+public class MyMainMenu {
+    private List<String> menu;
+    private final static String INVALID_OPTION;
+
+    static {
+        INVALID_OPTION = "Select a valid option!";
+    }
+
+    MyMainMenu() {
+        menu = new ArrayList<>();
+        menu.add("1. List Books");
+        menu.add("2. checkout Books");
+        menu.add("3. return Books");
+        menu.add("4. Quit");
+    }
+
+    @Override
+    public String toString() {
+        return menu.stream().collect(Collectors.joining("\n"));
+    }
+
+    public void showMenu() {
+        System.out.println("------------------------------");
+        System.out.println(this.toString());
+        System.out.println("------------------------------");
+    }
+}
