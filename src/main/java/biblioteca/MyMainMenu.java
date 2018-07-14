@@ -20,8 +20,12 @@ public class MyMainMenu {
         menu.add("1. List Books");
         menu.add("2. checkout Books");
         menu.add("3. return Books");
-        menu.add("4. user info");
-        menu.add("5. Quit");
+        menu.add("4. List Movies");
+        menu.add("5. checkout movies");
+        menu.add("6. return movies");
+
+        menu.add("7. user info");
+        menu.add("8. Quit");
     }
 
     @Override
