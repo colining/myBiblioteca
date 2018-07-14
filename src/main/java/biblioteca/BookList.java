@@ -10,6 +10,7 @@ public class BookList {
     BookList() {
         bookList = new HashMap<>();
         checkoutList = new HashMap<>();
+        init();
     }
 
 
@@ -22,6 +23,7 @@ public class BookList {
         if (bookList.containsKey(bookNumber)) {
             checkoutList.put(bookNumber, bookList.get(bookNumber));
             bookList.remove(bookNumber);
+            System.out.println("enjoy your book, have fun");
         }else {
             System.out.println("we don't have this book");
         }
@@ -31,6 +33,7 @@ public class BookList {
         if (checkoutList.containsKey(bookNumber)) {
             bookList.put(bookNumber, checkoutList.get(bookNumber));
             checkoutList.remove(bookNumber);
+            System.out.println("thank you return our book");
         }else {
             System.out.println("this book is not our,please return to other biblioteca");
         }

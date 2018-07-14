@@ -19,20 +19,36 @@ public class Main {
         welcome.welcome();
         MyMainMenu myMainMenu = new MyMainMenu();
         myMainMenu.showMenu();
+        UserList userList = new UserList();
+        userList.init();
         while (scanner.hasNext()) {
             int num = scanner.nextInt();
 
             if (num != QUIT_NUMBER) {
-                if (num == 1) {
+                if (num == LISTBOOKS) {
                     System.out.println(bookList.toString());
                 }
-                else if (num == 2) {
-                    System.out.println("please input you want checkout book\n");
-                    bookList.checkout(scanner.nextInt());
+                else if (num == CHECKOUTBOOKS) {
+                    if (userList.getCurrentUser()!=null||userList.check()) {
+                        System.out.println("please input you want checkout book\n");
+                        bookList.checkout(scanner.nextInt());
+                    }else {
+                        System.out.println("please input correct library number and password");
+                    }
                 }
-                else if (num == 3) {
-                    System.out.println("please input book's num you want return \n");
-                    bookList.returnBook(scanner.nextInt());
+                else if (num == RETURNBOOKS) {
+                    if (userList.getCurrentUser()!=null||userList.check()) {
+                        System.out.println("please input book's num you want return \n");
+                        bookList.returnBook(scanner.nextInt());
+                    }else {
+                        System.out.println("please input correct library number and password");
+                    }
+                } else if (num == USERINFO) {
+                    if (userList.getCurrentUser()!=null||userList.check()) {
+                        System.out.println(userList.getCurrentUser().toString());
+                    }else {
+                        System.out.println("please input correct library number and password");
+                    }
                 }
                 myMainMenu.showMenu();
                 continue;
