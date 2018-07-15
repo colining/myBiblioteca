@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 
 public class WelcomeTest {
@@ -20,7 +20,7 @@ public class WelcomeTest {
 
         Welcome welcome = new Welcome();
         welcome.welcome();
-        assertThat(systemOut().endsWith("Welcome to Biblioteca"));
+        assertThat(outContent.toString(),endsWith("Welcome to Biblioteca\n"));
     }
     private String systemOut() {
         return outContent.toString();

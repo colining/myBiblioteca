@@ -1,9 +1,13 @@
-package biblioteca;
+package biblioteca.List;
+
+import biblioteca.model.Book;
+import biblioteca.model.Movie;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static biblioteca.util.*;
+import static biblioteca.util.BOOK;
+import static biblioteca.util.MOVIE;
 
 
 public class ModelList {
@@ -12,7 +16,7 @@ public class ModelList {
     private Map<String, Book> checkoutListOfBook;
     private Map<String, Movie> checkoutListOfMovie;
 
-    ModelList() {
+    public ModelList() {
         bookList = new HashMap<>();
         checkoutListOfBook = new HashMap<>();
         movieList = new HashMap<>();
@@ -22,13 +26,16 @@ public class ModelList {
 
 
     void init() {
-        bookList.put("1", new Book("Test-driven Development: By Example", "Kent Beck", 2003,001));
-        bookList.put("2", new Book("A Song of Ice and Fire:", "George Raymond Richard Martin", 1996,002));
+        bookList.put("1", new Book("Test-driven Development: By Example", "Kent Beck", 2003, 1));
+        bookList.put("2", new Book("A Song of Ice and Fire", "George Raymond Richard Martin", 1996, 2));
+        movieList.put("1", new Movie("Titanic", "1997", "James Cameron", "9", 1));
+        movieList.put("2", new Movie("Avatar", "2009", "James Cameron", "9", 2));
 
     }
-    void checkout(int num,String type){
+
+    public void checkout(int num, String type) {
         Map list = null;
-        Map checkoutList=null;
+        Map checkoutList =null;
         if (type.equals(BOOK)) {
             list = this.bookList;
             checkoutList = this.checkoutListOfBook;
@@ -38,17 +45,18 @@ public class ModelList {
         }
         String Number = String.valueOf(num);
         assert list != null;
-        if (list.containsKey(Number)) {
+        if (checkoutList != null && list.containsKey(Number)) {
             checkoutList.put(Number, list.get(Number));
             list.remove(Number);
-            System.out.println(("enjoy your " + (type.equals(BOOK) ? "book" : "movie") + ", have fun"));
-        }else {
-            System.out.println("we don't have this "+(type.equals(BOOK) ?"book":"movie"));
+            System.out.print(("enjoy your " + (type.equals(BOOK) ? "book" : "movie") + ", have fun" + "\n"));
+        } else {
+            System.out.print("we don't have this " + (type.equals(BOOK) ? "book" : "movie" + "\n"));
         }
     }
-    void returnBook(int num,String type){
+
+    public void returnCollection(int num, String type) {
         Map list = null;
-        Map checkoutList=null;
+        Map checkoutList = null;
         if (type.equals(BOOK)) {
             list = this.bookList;
             checkoutList = this.checkoutListOfBook;
@@ -57,23 +65,16 @@ public class ModelList {
             checkoutList = this.checkoutListOfMovie;
         }
         String number = String.valueOf(num);
-        if (checkoutList.containsKey(number)) {
+        if (checkoutList != null && checkoutList.containsKey(number)) {
             list.put(number, checkoutList.get(number));
             checkoutList.remove(number);
             System.out.println(("thank you return our book" + (type.equals(BOOK) ? "book" : "movie")));
-        }else {
-            System.out.println(("this " + (type.equals(BOOK) ? "book" : "movie") + "is not our,please return to other biblioteca"));
+        } else {
+            System.out.println(("this " + (type.equals(BOOK) ? "book" : "movie") + " is not our,please return to other biblioteca"));
         }
     }
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, Book> entry : bookList.entrySet()) {
-            stringBuilder.append(entry.getValue().getDetails());
-        }
-        return stringBuilder.toString();
-    }
-    public String getBookList(){
+
+    public String getBookList() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String, Book> entry : bookList.entrySet()) {
             stringBuilder.append(entry.getValue().getDetails());
@@ -81,7 +82,7 @@ public class ModelList {
         return stringBuilder.toString();
     }
 
-    public String getMovieList(){
+    public String getMovieList() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String, Movie> entry : movieList.entrySet()) {
             stringBuilder.append(entry.getValue().getDetails());

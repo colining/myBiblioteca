@@ -1,5 +1,6 @@
 package biblioteca;
 
+import biblioteca.model.Book;
 import org.junit.Before;
 import org.junit.Test;
 

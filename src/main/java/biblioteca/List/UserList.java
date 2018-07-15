@@ -1,4 +1,6 @@
-package biblioteca;
+package biblioteca.List;
+
+import biblioteca.model.User;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -13,12 +15,12 @@ public class UserList {
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
+    private void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
     private User currentUser = null;
-    void init(){
+    public void init(){
         userList.put("123-456", new User("colin", "123@qq.com", "123456", "123-456", "123"));
         userList.put("234-567", new User("Lili", "234@qq.com", "234567", "234-567", "456"));
     }
@@ -26,17 +28,14 @@ public class UserList {
     void add(User user) {
         userList.put(user.getLibraryNumber(), user);
     }
-    boolean check(){
-            System.out.println("please input your library number");
-            Scanner scanner = new Scanner(System.in);
-            String libnum = scanner.nextLine();
-            if (userList.containsKey(libnum)) {
-                return this.checkPassWord(libnum);
-            }
-        return false;
+    public boolean check() {
+        System.out.println("please input your library number");
+        Scanner scanner = new Scanner(System.in);
+        String libnum = scanner.nextLine();
+        return userList.containsKey(libnum) && this.checkPassWord(libnum);
     }
 
-    boolean checkPassWord(String libnum) {
+    private boolean checkPassWord(String libnum) {
         System.out.println("please input your password");
         Scanner scanner = new Scanner(System.in);
         String password = scanner.nextLine();

@@ -1,4 +1,4 @@
-package biblioteca;
+package biblioteca.model;
 
 /**
  * Created by colin on 2018/7/14.

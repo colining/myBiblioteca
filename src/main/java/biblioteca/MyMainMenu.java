@@ -9,11 +9,6 @@ import java.util.stream.Collectors;
  */
 public class MyMainMenu {
     private List<String> menu;
-    private final static String INVALID_OPTION;
-
-    static {
-        INVALID_OPTION = "Select a valid option!";
-    }
 
     MyMainMenu() {
         menu = new ArrayList<>();
@@ -23,7 +18,6 @@ public class MyMainMenu {
         menu.add("4. List Movies");
         menu.add("5. checkout movies");
         menu.add("6. return movies");
-
         menu.add("7. user info");
         menu.add("8. Quit");
     }
